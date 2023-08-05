@@ -42,7 +42,6 @@ function App() {
       price:"45",
     }
   ])
-  console.log(Medicines)
 
   function AddAMedicineHandler(medicine){
     setMedicines((prevMedicine)=>{
