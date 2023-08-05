@@ -1,0 +1,31 @@
+table {
+    margin-top: 40px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  th {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  .Action {
+    width: 120px;
+  }
+  .Description{
+    width: 600px
+  }
+  .Quantity{
+    width: 50px;
+  }
+ 
