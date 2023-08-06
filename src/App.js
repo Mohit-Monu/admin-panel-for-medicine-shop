@@ -8,7 +8,6 @@ import React, { Fragment, useState } from "react";
 function App() {
   const [Medicines,setMedicines]=useState([])
   const [cart,setCart]=useState([])
-  console.log(Medicines)
   function AddAMedicineHandler(medicine){
     setMedicines((prevMedicine)=>{
       return([medicine,...prevMedicine])
@@ -43,11 +42,31 @@ function App() {
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
-  function removeItemcarthandler(){
-
+  function removeItemcarthandler(id){
+    const cartitem=cart.filter((item)=>{
+      if(item.id===id){
+        if(item.quantity===1){
+        }else{
+          item.quantity--
+          return(item)
+        }
+        
+      }else{
+        return(item)
+      }
+    })
+    setCart(cartitem)
   }
-  function addItemcarthandler(){
-
+  function addItemcarthandler(id){
+    const cartitem=cart.map((item)=>{
+      if(item.id===id){
+        item.quantity++
+        return(item)
+      }else{
+        return(item)
+      }
+    })
+    setCart(cartitem)
   }
   return (
     <Fragment>

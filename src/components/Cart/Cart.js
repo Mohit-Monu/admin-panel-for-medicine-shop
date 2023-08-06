@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 
 const Cart = (props) => {
   const cartItemRemoveHandler = (id) => {
-    props.removeItemcart(id);
+    props.removeItemcart(id.target.value);
   };
 
-  const cartItemAddHandler = (item) => {
-    props.addItemcart({ ...item, amount: 1 });
+  const cartItemAddHandler = (id) => {
+    props.addItemcart(id.target.value);
   };
   const [totalamount, setTotalAmount] = useState(0);
   useEffect(() => {
@@ -25,11 +25,12 @@ const Cart = (props) => {
         return (
           <CartItem
             key={item.id}
+            id={item.id}
             name={item.name}
             quantity={item.quantity}
             price={item.price}
             onRemove={cartItemRemoveHandler}
-            onAdd={cartItemAddHandler.bind}
+            onAdd={cartItemAddHandler}
           />
         );
       })}
