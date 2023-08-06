@@ -21,7 +21,7 @@ function AddMedicine(props) {
       id:Date.now(),
       name:MedicineName,
       description:MedicineDescription,
-      price:MedicinePrice
+      price:+MedicinePrice
     }
     props.OnMedicineAdd(obj)
     setMedicineDescription("")

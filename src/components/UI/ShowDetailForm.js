@@ -6,8 +6,10 @@ function Input(props) {
   function submitHandler(e) {
     e.preventDefault();
     const obj = {
-      quantity: quantity.current.value,
-      id:e.target.value
+      id:e.target.value,
+      name: e.target.parentNode.parentNode.children[0].innerHTML ,
+      quantity: +quantity.current.value,
+      price: +e.target.parentNode.parentNode.children[2].innerHTML.substring(3)
     };
     props.onSubmit(obj);
   }

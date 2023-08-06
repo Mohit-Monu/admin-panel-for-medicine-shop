@@ -3,6 +3,7 @@ import React from "react";
 import ShowDetailForm from "../UI/ShowDetailForm";
 function ShowMedicine(props) {
   function AddToCartHandler(product) {
+    console.log()
     props.OnCartAdd(product);
   }
   const listofmedicine = props.medicines.map((item) => (
@@ -25,4 +26,5 @@ function ShowMedicine(props) {
     </table>
   );
 }
+
 export default ShowMedicine;

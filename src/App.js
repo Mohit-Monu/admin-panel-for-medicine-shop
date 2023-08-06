@@ -1,59 +1,58 @@
 import "./App.css";
 import AddMedicine from "./components/AddMedicine/AddMedicine";
+import Cart from "./components/Cart/Cart";
 import ShowMedicine from "./components/ShowMedicine/ShowMedicine";
 import Header from "./components/header/Header";
 import React, { Fragment, useState } from "react";
 
 function App() {
-  const [Medicines,setMedicines]=useState([
-    {
-      id:9562346512,
-      name:"Avil",
-      description:"Used to treat",
-      price:44,
-    },{
-      id:956236512,
-      name:"Avdfil",
-      description:"Used to treat AV",
-      price:5,
-    },{
-      id:962346512,
-      name:"Avilsd",
-      description:"Used to treat ARR",
-      price:45,
-    }
-  ])
+  const [Medicines,setMedicines]=useState([])
+  const [cart,setCart]=useState([])
   console.log(Medicines)
-  const [cart,setCart]=useState([
-    {
-      id:9562346512,
-      name:"Avil",
-      quantity:"123",
-      price:"44",
-    },{
-      id:956236512,
-      name:"Avdfil",
-      description:"Used to treat AV",
-      price:"5",
-    },{
-      id:962346512,
-      name:"Avilsd",
-      description:"Used to treat ARR",
-      price:"45",
-    }
-  ])
-
   function AddAMedicineHandler(medicine){
     setMedicines((prevMedicine)=>{
       return([medicine,...prevMedicine])
     })
   }
-  function AddMedicineCartHandler(){
-    // setCart()
+  function AddMedicineCartHandler(product){
+    let count=0
+    const cartitem=cart.map((item)=>{
+      if(item.id===product.id){
+        item.quantity=item.quantity+product.quantity
+        count++
+        return(item)
+      }else{
+        return(item)
+      }
+    })
+    if(count===0){
+      setCart((prevCart)=>{
+        return([product,...prevCart])
+      })
+    }else{
+      setCart(cartitem)
+    }
+
+  }
+  const [cartIsShown, setCartIsShown] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShown(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  };
+  function removeItemcarthandler(){
+
+  }
+  function addItemcarthandler(){
+
   }
   return (
     <Fragment>
-      <Header medicineLength={cart.length}></Header>
+      {cartIsShown && <Cart onClose={hideCartHandler} medicines={cart} removeItemcart={removeItemcarthandler} addItemcart={addItemcarthandler}></Cart>}
+      <Header medicineLength={cart.length} onShowCart={showCartHandler}></Header>
       <AddMedicine OnMedicineAdd={AddAMedicineHandler}></AddMedicine>
       <ShowMedicine OnCartAdd={AddMedicineCartHandler} medicines={Medicines}></ShowMedicine>
     </Fragment>

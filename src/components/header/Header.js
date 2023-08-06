@@ -2,7 +2,7 @@ import classes from "./Header.module.css";
 import Button from "../UI/Button"
 function Header(props) {
   function CartView() {
-    console.log("clicked")
+    props.onShowCart()
   }
   return (
     <div className={classes.header}>
